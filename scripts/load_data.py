@@ -32,11 +32,11 @@ test_batch_pointer = 0
 #         angles.append(float(angle) * scipy.pi / 180)
 
 with open("/mnt/data1/self-driving-car/datasets/larger/output/interpolated.csv") as f:
-    reader = csv.reader(f)
-    for line in f:
+    reader = csv.reader(f, delimiter=",")
+    for line in reader:
         if line[4] == "center_camera":
             image, angle = line[5], line[6]
-            images.append(image)
+            images.append("/mnt/data1/self-driving-car/datasets/larger/output/" + str(image))
             angles.append(angle)
 
 # shuffle images and angles

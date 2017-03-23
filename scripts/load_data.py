@@ -31,7 +31,7 @@ test_batch_pointer = 0
 #         # steering wheel angle in radians
 #         angles.append(float(angle) * scipy.pi / 180)
 
-with open("data1/self-driving-car/datasets/larger/output/interpolated.csv") as f:
+with open("/mnt/data1/self-driving-car/datasets/larger/output/interpolated.csv") as f:
     reader = csv.reader(f)
     for line in f:
         if line[4] == "center_camera":

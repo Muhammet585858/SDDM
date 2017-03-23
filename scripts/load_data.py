@@ -12,6 +12,7 @@ import scipy.misc
 import random
 from scipy import ndimage
 import cv2
+import csv
 
 # image file names
 images = []
@@ -23,12 +24,20 @@ train_batch_pointer = 0
 test_batch_pointer = 0
 
 # read data.txt
-with open("data/data.txt") as f:
+# with open("data/data.txt") as f:
+#     for line in f:
+#         image, angle = line.split()
+#         images.append("data/" + image)
+#         # steering wheel angle in radians
+#         angles.append(float(angle) * scipy.pi / 180)
+
+with open("data1/self-driving-car/datasets/larger/output/interpolated.csv") as f:
+    reader = csv.reader(f)
     for line in f:
-        image, angle = line.split()
-        images.append("data/" + image)
-        # steering wheel angle in radians
-        angles.append(float(angle) * scipy.pi / 180)
+        if line[4] == "center_camera":
+            image, angle = line[5], line[6]
+            images.append(image)
+            angles.append(angle)
 
 # shuffle images and angles
 temp_tuples = list(zip(images, angles))

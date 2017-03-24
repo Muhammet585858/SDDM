@@ -46,7 +46,7 @@ images, angles = zip(*temp_tuples)
 
 # get number of images
 data_size = len(images)
-# print data_size
+print data_size
 
 # use the first 80% as training data
 train_images = images[:int(data_size * 0.8)]

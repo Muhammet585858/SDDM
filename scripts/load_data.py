@@ -46,15 +46,17 @@ images, angles = zip(*temp_tuples)
 
 # get number of images
 data_size = len(images)
-print data_size
+print "Data size = " + str(data_size)
 
 # use the first 80% as training data
 train_images = images[:int(data_size * 0.8)]
 train_angles = angles[:int(data_size * 0.8)]
+print "Train set size = " + str(len(train_images))
 
 # use the last 20% as test data
 test_images = images[-int(data_size * 0.2):]
 test_angles = angles[-int(data_size * 0.2):]
+print "Test set size = " + str(len(test_images))
 
 # get number of images in training and test sets
 train_images_size = len(train_images)

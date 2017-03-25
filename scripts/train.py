@@ -38,7 +38,7 @@ summary_writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())
 
 saver = tf.train.Saver()
 epochs = 30
-batch_size = 100
+batch_size = 10
 
 # train over the dataset about 30 times
 for epoch in range(epochs):
@@ -48,11 +48,11 @@ for epoch in range(epochs):
     if i % 10 == 0:
       images, angles = load_data.LoadTestBatch(batch_size)
       loss_value = loss.eval(feed_dict={model.x:images, model.y_: angles, model.keep_prob: 1.0})
-      print("Epoch: %d, Step: %d, Loss: %g" % (epoch, epoch * batch_size + i, loss_value))
+      print("Epoch: %d, Step: %d, Loss: %g" % (epoch, epoch * load_data.data_size/batch_size + i, loss_value))
 
     # write logs at every iteration
     summary = merged_summary_op.eval(feed_dict={model.x:images, model.y_: angles, model.keep_prob: 1.0})
-    summary_writer.add_summary(summary, epoch * batch_size + i)
+    summary_writer.add_summary(summary, epoch * load_data.data_size/batch_size + i)
 
     if i % batch_size == 0:
       if not os.path.exists(LOGDIR):
